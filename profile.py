@@ -69,7 +69,7 @@ class GLOBALS(object):
     OAI_DS = "urn:publicid:IDN+emulab.net:phantomnet+ltdataset+oai-develop"
     UE_IMG  = URN.Image(PN.PNDEFS.PNET_AM, "PhantomNet:ANDROID444-STD")
     ADB_IMG = URN.Image(PN.PNDEFS.PNET_AM, "PhantomNet:UBUNTU14-64-PNTOOLS")
-    OAI_EPC_IMG = URN.Image(PN.PNDEFS.PNET_AM, "PhantomNet:UBUNTU14-64-OAICN")
+    OAI_EPC_IMG = URN.Image(PN.PNDEFS.PNET_AM, "PhantomNet:UBUNTU16-64-OAIEPC")
     OAI_ENB_IMG = URN.Image(PN.PNDEFS.PNET_AM, "PhantomNet:OAI-Real-Hardware.enb1")
     OAI_NR_IMG = "urn:publicid:IDN+emulab.net+image+PowderSandbox//OAI-NR"
     #OAI_NR_IMG = "urn:publicid:IDN+emulab.net+image+PowderSandbox:oai-nr_ue"
@@ -131,7 +131,7 @@ request = pc.makeRequestRSpec()
 
 # Add OAI EPC (HSS, MME, SPGW) node.
 epc = request.RawPC("epc")
-epc.disk_image = GLOBALS.OAI_ENB_IMG
+epc.disk_image = GLOBALS.OAI_EPC_IMG
 epc.addService(rspec.Execute(shell="sh", command=GLOBALS.OAI_CONF_SCRIPT + " -r EPC"))
 connectOAI_DS(epc,1)
 
