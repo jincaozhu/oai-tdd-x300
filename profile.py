@@ -131,7 +131,7 @@ request = pc.makeRequestRSpec()
 
 # Add OAI EPC (HSS, MME, SPGW) node.
 epc = request.RawPC("epc")
-epc.disk_image = GLOBALS.OAI_EPC_IMG
+epc.disk_image = GLOBALS.OAI_ENB_IMG
 epc.addService(rspec.Execute(shell="sh", command=GLOBALS.OAI_CONF_SCRIPT + " -r EPC"))
 connectOAI_DS(epc,1)
 
