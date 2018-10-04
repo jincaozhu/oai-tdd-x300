@@ -66,9 +66,11 @@ import geni.rspec.emulab.pnext as PN
 class GLOBALS(object):
     OAI_NR_ENB_DS = "urn:publicid:IDN+emulab.net:powdersandbox+ltdataset+oai-nr-enb"
     OAI_NR_UE_DS = "urn:publicid:IDN+emulab.net:powdersandbox+ltdataset+oai-nr-ue"
+    OAI_DS = "urn:publicid:IDN+emulab.net:phantomnet+ltdataset+oai-develop"
     UE_IMG  = URN.Image(PN.PNDEFS.PNET_AM, "PhantomNet:ANDROID444-STD")
     ADB_IMG = URN.Image(PN.PNDEFS.PNET_AM, "PhantomNet:UBUNTU14-64-PNTOOLS")
     OAI_EPC_IMG = URN.Image(PN.PNDEFS.PNET_AM, "PhantomNet:UBUNTU14-64-OAICN")
+    OAI_ENB_IMG = URN.Image(PN.PNDEFS.PNET_AM, "PhantomNet:OAI-Real-Hardware.enb1")
     OAI_NR_IMG = "urn:publicid:IDN+emulab.net+image+PowderSandbox//OAI-NR"
     #OAI_NR_IMG = "urn:publicid:IDN+emulab.net+image+PowderSandbox:oai-nr_ue"
     #OAI_NR_IMG = URN.Image(PN.PNDEFS.PNET_AM, "PhantomNet:UBUNTU14-64-OAI")
@@ -81,10 +83,9 @@ def connectOAI_DS(node, type):
     # Create remote read-write clone dataset object bound to OAI dataset
     bs = request.RemoteBlockstore("ds-%s" % node.name, "/opt/oai")
     if type == 1:
-	    bs.dataset = GLOBALS.OAI_NR_ENB_DS
+	    bs.dataset = GLOBALS.OAI_DS
     else:
-	    bs.dataset = GLOBALS.OAI_NR_UE_DS
-    
+	    bs.dataset = GLOBALS.OAI_NR_UE_DS    
     bs.rwclone = True
 
     # Create link from node to OAI dataset rw clone
@@ -139,7 +140,7 @@ enb1 = request.RawPC("enb1")
 if params.FIXED_ENB:
     enb1.component_id = params.FIXED_ENB
 enb1.hardware_type = GLOBALS.NUC_HWTYPE
-enb1.disk_image = GLOBALS.OAI_NR_IMG
+enb1.disk_image = GLOBALS.OAI_ENB_IMG
 connectOAI_DS(enb1,1)
 enb1.addService(rspec.Execute(shell="sh", command=GLOBALS.OAI_CONF_SCRIPT + " -r ENB"))
 #enb1_rue1_rf = enb1.addInterface("rue1_rf")
