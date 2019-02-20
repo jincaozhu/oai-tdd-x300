@@ -147,6 +147,18 @@ enb1.addService(rspec.Execute(shell="sh", command=GLOBALS.OAI_CONF_SCRIPT + " -r
 enb1_usrp_if = enb1.addInterface( "usrp_if" )
 enb1_usrp_if.addAddress( rspec.IPv4Address( "192.168.30.1", "255.255.255.0" ) )
 
+# Add a OAI UE node.
+rue1 = request.RawPC("rue1")
+if params.FIXED_ENB:
+    rue1.component_id = params.FIXED_ENB
+rue1.hardware_type = GLOBALS.NUC_HWTYPE
+rue1.disk_image = GLOBALS.OAI_NR_IMG
+connectOAI_DS(rue1,0)
+rue1.addService(rspec.Execute(shell="sh", command=GLOBALS.OAI_CONF_SCRIPT + " -r ENB"))
+#enb1_rue1_rf = enb1.addInterface("rue1_rf")
+rue1_usrp_if = rue1.addInterface( "usrp_if" )
+rue1_usrp_if.addAddress( rspec.IPv4Address( "192.168.30.1", "255.255.255.0" ) )
+
 # Add an OTS (Nexus 5) UE
 #rue1 = request.UE("rue1")
 #if params.FIXED_UE:
