@@ -184,6 +184,17 @@ usrplink_enb = request.Link( "usrp-sdr_enb" )
 usrplink_enb.addInterface( enb1_usrp_if )
 usrplink_enb.addInterface( usrp_enb_if )
 
+usrp_ue = request.RawPC( "usrp_ue" )
+usrp_ue.hardware_type = "sdr"
+usrp_ue.disk_image = URN.Image(PN.PNDEFS.PNET_AM, "emulab-ops:GENERICDEV-NOVLANS")
+usrp_ue_if = usrp_ue.addInterface( "usrp-nuc" )
+usrp_ue_if.addAddress( rspec.IPv4Address( "192.168.30.2", "255.255.255.0" ) )
+
+usrplink_ue = request.Link( "usrp-sdr_ue" )
+usrplink_ue.addInterface( rue1_usrp_if )
+usrplink_ue.addInterface( usrp_ue_if )
+
+
 # Add a link connecting the NUC eNB and the OAI EPC node.
 epclink = request.Link("s1-lan")
 epclink.addNode(enb1)
