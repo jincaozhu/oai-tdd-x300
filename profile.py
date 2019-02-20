@@ -153,7 +153,7 @@ if params.FIXED_ENB:
     rue1.component_id = params.FIXED_ENB
 rue1.hardware_type = GLOBALS.NUC_HWTYPE
 rue1.disk_image = GLOBALS.OAI_NR_IMG
-connectOAI_DS(rue1,0)
+connectOAI_DS(rue1,1)
 rue1.addService(rspec.Execute(shell="sh", command=GLOBALS.OAI_CONF_SCRIPT + " -r ENB"))
 #enb1_rue1_rf = enb1.addInterface("rue1_rf")
 rue1_usrp_if = rue1.addInterface( "usrp_if" )
