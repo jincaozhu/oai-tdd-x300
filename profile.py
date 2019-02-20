@@ -140,7 +140,7 @@ enb1 = request.RawPC("enb1")
 if params.FIXED_ENB:
     enb1.component_id = params.FIXED_ENB
 enb1.hardware_type = GLOBALS.NUC_HWTYPE
-enb1.disk_image = GLOBALS.OAI_ENB_IMG
+enb1.disk_image = GLOBALS.OAI_NR_IMG
 connectOAI_DS(enb1,1)
 enb1.addService(rspec.Execute(shell="sh", command=GLOBALS.OAI_CONF_SCRIPT + " -r ENB"))
 #enb1_rue1_rf = enb1.addInterface("rue1_rf")
