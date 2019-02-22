@@ -184,6 +184,7 @@ usrp_enb_if.addAddress( rspec.IPv4Address( "192.168.30.2", "255.255.255.0" ) )
 usrplink_enb = request.Link( "usrp-sdr_enb" )
 usrplink_enb.addInterface( enb1_usrp_if )
 usrplink_enb.addInterface( usrp_enb_if )
+usrplink_enb.bandwidth = 10 * 1000 * 1000
 
 usrp_ue = request.RawPC( "usrp_ue" )
 usrp_ue.hardware_type = "sdr"
@@ -194,6 +195,7 @@ usrp_ue_if.addAddress( rspec.IPv4Address( "192.168.30.2", "255.255.255.0" ) )
 usrplink_ue = request.Link( "usrp-sdr_ue" )
 usrplink_ue.addInterface( rue1_usrp_if )
 usrplink_ue.addInterface( usrp_ue_if )
+usrplink_ue.bandwidth = 10 * 1000 * 1000
 
 
 # Add a link connecting the NUC eNB and the OAI EPC node.
